@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -36,7 +38,7 @@ class OfflineResponse extends AbstractResponse
     /**
      * @param string $status
      */
-    private function setStatus(string $status)
+    private function setStatus(string $status = '')
     {
         $this->status = $status;
     }
@@ -46,7 +48,7 @@ class OfflineResponse extends AbstractResponse
      *
      * @param string $body
      */
-    public function __construct(string $body)
+    public function __construct(string $body = '')
     {
         parent::__construct($body);
         if (!isset($this->getXml()->{'acknowledgement'})) {

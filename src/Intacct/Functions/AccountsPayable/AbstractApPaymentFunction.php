@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -47,7 +49,7 @@ abstract class AbstractApPaymentFunction extends AbstractFunction
     /**
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml): void
+    public function writeXml(?XMLWriter &$xml): void
     {
         switch ($this->getFunction()) {
             case self::DELETE:

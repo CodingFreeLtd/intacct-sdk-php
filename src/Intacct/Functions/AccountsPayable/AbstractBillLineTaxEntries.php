@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -69,5 +71,5 @@ abstract class AbstractBillLineTaxEntries extends \Intacct\Functions\AbstractFun
         $this->taxValue = $taxValue;
     }
 
-    abstract public function writeXml(XMLWriter &$xml);
+    abstract public function writeXml(?XMLWriter &$xml);
 }

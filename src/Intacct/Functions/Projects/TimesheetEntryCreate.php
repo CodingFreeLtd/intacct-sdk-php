@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -32,8 +34,11 @@ class TimesheetEntryCreate extends AbstractTimesheetEntry
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('TIMESHEETENTRY');
 
         if (!$this->getEntryDate()) {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -76,7 +78,7 @@ class Filter implements FilterInterface
      *
      * @param string $fieldName
      */
-    public function __construct(string $fieldName)
+    public function __construct(string $fieldName = '')
     {
         $this->field = $fieldName;
     }
@@ -86,7 +88,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function equalTo(string $value): FilterInterface
+    public function equalTo(string $value = ''): FilterInterface
     {
         $this->value = $value;
 
@@ -100,7 +102,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function notEqualTo(string $value): FilterInterface
+    public function notEqualTo(string $value = ''): FilterInterface
     {
         $this->value = $value;
 
@@ -114,7 +116,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function lessThan(string $value): FilterInterface
+    public function lessThan(string $value = ''): FilterInterface
     {
         $this->value = $value;
 
@@ -128,7 +130,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function lessThanOrEqualTo(string $value): FilterInterface
+    public function lessThanOrEqualTo(string $value = ''): FilterInterface
     {
         $this->value = $value;
 
@@ -142,7 +144,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function greaterThan(string $value): FilterInterface
+    public function greaterThan(string $value = ''): FilterInterface
     {
         $this->value = $value;
 
@@ -156,7 +158,7 @@ class Filter implements FilterInterface
      *
      * @return FilterInterface
      */
-    public function greaterThanOrEqualTo(string $value): FilterInterface
+    public function greaterThanOrEqualTo(string $value = ''): FilterInterface
     {
         $this->value = $value;
 
@@ -262,8 +264,11 @@ class Filter implements FilterInterface
     /**
      * @param XMLWriter &$xml
      */
-    public function writeXML(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement($this->operation);
 
         $xml->writeElement('field', $this->field, false);

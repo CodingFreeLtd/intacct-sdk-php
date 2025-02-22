@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -58,7 +60,7 @@ class GetList extends AbstractFunction
     /**
      * @param string $objectName
      */
-    public function setObjectName(string $objectName)
+    public function setObjectName(string $objectName = '')
     {
         $this->objectName = $objectName;
     }
@@ -181,8 +183,11 @@ class GetList extends AbstractFunction
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 

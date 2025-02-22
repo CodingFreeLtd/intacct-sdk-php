@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -65,8 +67,11 @@ abstract class AbstractOperator implements FilterInterface
      * @param XMLWriter &$xml
      * @throws IntacctException
      */
-    public function writeXML(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         if (($this->filters) && (sizeof($this->filters) >= 2)) {
             $xml->startElement($this->getOperator());
             foreach ($this->filters as $filter) {

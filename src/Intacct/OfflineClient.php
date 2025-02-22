@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -30,7 +32,7 @@ class OfflineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OfflineResponse
      */
-    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null): OfflineResponse
+    public function execute(FunctionInterface $function, ?RequestConfig $requestConfig = null): OfflineResponse
     {
         return $this->executeOfflineRequest([ $function ], $requestConfig);
     }
@@ -42,7 +44,7 @@ class OfflineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OfflineResponse
      */
-    public function executeBatch(array $functions, RequestConfig $requestConfig = null): OfflineResponse
+    public function executeBatch(array $functions, ?RequestConfig $requestConfig = null): OfflineResponse
     {
         return $this->executeOfflineRequest($functions, $requestConfig);
     }

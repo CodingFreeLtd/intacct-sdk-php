@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -106,8 +108,11 @@ class AttachmentFile implements AttachmentInterface
      * @param XMLWriter $xml
      * @throw InvalidArgumentException
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         if (!$this->getFilePath()) {
             throw new InvalidArgumentException('Attachment File Path is required for create');
         }

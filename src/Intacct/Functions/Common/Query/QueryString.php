@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -46,7 +48,7 @@ class QueryString implements QueryInterface
     /**
      * @param string $query
      */
-    public function setQuery(string $query)
+    public function setQuery(string $query = '')
     {
         $this->query = $query;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -30,7 +32,7 @@ class OnlineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OnlineResponse
      */
-    public function execute(FunctionInterface $function, RequestConfig $requestConfig = null): OnlineResponse
+    public function execute(FunctionInterface $function, ?RequestConfig $requestConfig = null): OnlineResponse
     {
         $response = $this->executeOnlineRequest([ $function ], $requestConfig);
 
@@ -46,7 +48,7 @@ class OnlineClient extends AbstractClient
      * @param RequestConfig $requestConfig
      * @return OnlineResponse
      */
-    public function executeBatch(array $functions, RequestConfig $requestConfig = null): OnlineResponse
+    public function executeBatch(array $functions, ?RequestConfig $requestConfig = null): OnlineResponse
     {
         $response = $this->executeOnlineRequest($functions, $requestConfig);
 

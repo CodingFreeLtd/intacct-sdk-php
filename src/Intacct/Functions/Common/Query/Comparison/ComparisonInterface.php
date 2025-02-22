@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -23,7 +26,7 @@ interface ComparisonInterface extends ConditionInterface
 
     public function getField(): string;
 
-    public function setField(string $field);
+    public function setField(string $field = '');
 
     public function getValue();
 

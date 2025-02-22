@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -49,7 +51,7 @@ class ReadRelated extends AbstractFunction
     /**
      * @param string $objectName
      */
-    public function setObjectName(string $objectName)
+    public function setObjectName(string $objectName = '')
     {
         $this->objectName = $objectName;
     }
@@ -65,7 +67,7 @@ class ReadRelated extends AbstractFunction
     /**
      * @param string $relationName
      */
-    public function setRelationName(string $relationName)
+    public function setRelationName(string $relationName = '')
     {
         $this->relationName = $relationName;
     }
@@ -142,8 +144,11 @@ class ReadRelated extends AbstractFunction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
         

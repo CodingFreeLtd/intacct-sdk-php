@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -37,7 +39,7 @@ class Result
     /**
      * @param string $status
      */
-    private function setStatus(string $status)
+    private function setStatus(string $status = '')
     {
         $this->status = $status;
     }
@@ -56,7 +58,7 @@ class Result
     /**
      * @param string $function
      */
-    private function setFunction(string $function)
+    private function setFunction(string $function = '')
     {
         $this->function = $function;
     }
@@ -75,7 +77,7 @@ class Result
     /**
      * @param string $controlId
      */
-    private function setControlId(string $controlId)
+    private function setControlId(string $controlId = '')
     {
         $this->controlId = $controlId;
     }
@@ -113,7 +115,7 @@ class Result
     /**
      * @param string $listType
      */
-    private function setListType(string $listType)
+    private function setListType(string $listType = '')
     {
         $this->listType = $listType;
     }
@@ -189,7 +191,7 @@ class Result
     /**
      * @param string $resultId
      */
-    private function setResultId(string $resultId)
+    private function setResultId(string $resultId = '')
     {
         $this->resultId = $resultId;
     }
@@ -208,7 +210,7 @@ class Result
     /**
      * @param string $key
      */
-    public function setKey(string $key)
+    public function setKey(string $key = '')
     {
         $this->key = $key;
     }

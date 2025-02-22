@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -36,13 +38,16 @@ class CompanyPrefsGet extends AbstractFunction
     /**
      * @param string $application
      */
-    public function setApplication(string $application): void
+    public function setApplication(string $application = ''): void
     {
         $this->application = $application;
     }
 
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->controlId, true);
         $xml->startElement('get_companyprefs', null, true);

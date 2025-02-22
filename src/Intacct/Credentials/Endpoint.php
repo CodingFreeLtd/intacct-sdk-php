@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -50,7 +52,7 @@ class Endpoint
         }
     }
 
-    private function isDomainValid(string $hostName) {
+    private function isDomainValid(string $hostName = '') {
          $checkMainDomain = "." . self::DOMAIN_NAME;
          $checkFQDNDomain = "." . self::FULL_QUALIFIED_DOMAIN_NAME;
 
@@ -79,7 +81,7 @@ class Endpoint
     /**
      * @param string $url
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url = ''):void
     {
         if (!$url) {
             $url = self::DEFAULT_ENDPOINT;
@@ -93,7 +95,7 @@ class Endpoint
         $host = parse_url($url, PHP_URL_HOST);
         if (!$this->isDomainValid($host)) {
             throw new \InvalidArgumentException(
-                'Endpoint URL is not a valid ' . self::DOMAIN_NAME . ' domain name.'
+                sprintf('Endpoint URL is not a valid %s domain name.', self::DOMAIN_NAME)
             );
         }
 

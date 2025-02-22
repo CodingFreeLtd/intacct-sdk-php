@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -42,7 +44,7 @@ abstract class AbstractFulfillmentStatus extends AbstractFunction
     /**
      * @param string $deliveryStatus
      */
-    public function setDeliveryStatus(string $deliveryStatus): void
+    public function setDeliveryStatus(string $deliveryStatus = ''): void
     {
         $this->deliveryStatus = $deliveryStatus;
     }
@@ -74,7 +76,7 @@ abstract class AbstractFulfillmentStatus extends AbstractFunction
     /**
      * @param string $deferralStatus
      */
-    public function setDeferralStatus(string $deferralStatus): void
+    public function setDeferralStatus(string $deferralStatus = ''): void
     {
         $this->deferralStatus = $deferralStatus;
     }

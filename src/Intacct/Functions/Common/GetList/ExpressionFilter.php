@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -72,7 +74,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @param string $fieldName
      */
-    public function setFieldName(string $fieldName)
+    public function setFieldName(string $fieldName = '')
     {
         $this->fieldName = $fieldName;
     }
@@ -88,7 +90,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @param string $operator
      */
-    public function setOperator(string $operator)
+    public function setOperator(string $operator = '')
     {
         $operators = [
             static::OPERATOR_EQUAL_TO,
@@ -134,7 +136,7 @@ class ExpressionFilter implements FilterInterface
     /**
      * @param string $objectName
      */
-    public function setObjectName(string $objectName)
+    public function setObjectName(string $objectName = '')
     {
         $this->objectName = $objectName;
     }
@@ -144,8 +146,11 @@ class ExpressionFilter implements FilterInterface
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('expression');
         if ($this->getObjectName()) {
             $xml->writeAttribute('object', $this->getObjectName());

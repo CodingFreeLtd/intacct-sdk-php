@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -68,7 +70,7 @@ abstract class AbstractResponse
      *
      * @param string $body
      */
-    public function __construct(string $body)
+    public function __construct(string $body = '')
     {
         libxml_use_internal_errors(true);
         $xml = simplexml_load_string($body);

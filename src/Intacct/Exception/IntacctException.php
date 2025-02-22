@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -32,7 +34,7 @@ class IntacctException extends \RuntimeException
      * @param int $code
      * @param \Exception $previous
      */
-    public function __construct(string $message, int $code = 0, \Exception $previous = null)
+    public function __construct(string $message, int $code = 0, ?\Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -40,7 +42,7 @@ class ClientConfig
     /**
      * @param string $profileFile
      */
-    public function setProfileFile(string $profileFile)
+    public function setProfileFile(string $profileFile = ''): void
     {
         $this->profileFile = $profileFile;
     }
@@ -59,7 +61,7 @@ class ClientConfig
     /**
      * @param string $profileName
      */
-    public function setProfileName(string $profileName)
+    public function setProfileName(string $profileName = ''): void
     {
         $this->profileName = $profileName;
     }
@@ -78,7 +80,7 @@ class ClientConfig
     /**
      * @param string $endpointUrl
      */
-    public function setEndpointUrl(string $endpointUrl)
+    public function setEndpointUrl(string $endpointUrl = ''): void
     {
         $this->endpointUrl = $endpointUrl;
     }
@@ -97,7 +99,7 @@ class ClientConfig
     /**
      * @param string $senderId
      */
-    public function setSenderId(string $senderId)
+    public function setSenderId(string $senderId = ''): void
     {
         $this->senderId = $senderId;
     }
@@ -116,7 +118,7 @@ class ClientConfig
     /**
      * @param string $senderPassword
      */
-    public function setSenderPassword(string $senderPassword)
+    public function setSenderPassword(string $senderPassword = ''): void
     {
         $this->senderPassword = $senderPassword;
     }
@@ -135,7 +137,7 @@ class ClientConfig
     /**
      * @param string $sessionId
      */
-    public function setSessionId(string $sessionId)
+    public function setSessionId(string $sessionId = ''): void
     {
         $this->sessionId = $sessionId;
     }
@@ -154,7 +156,7 @@ class ClientConfig
     /**
      * @param string $sessionTimestamp
      */
-    public function setSessionTimestamp(string $sessionTimestamp): void
+    public function setSessionTimestamp(string $sessionTimestamp = ''): void
     {
         $this->sessionTimestamp = $sessionTimestamp;
     }
@@ -173,7 +175,7 @@ class ClientConfig
     /**
      * @param string $sessionTimeout
      */
-    public function setSessionTimeout(string $sessionTimeout): void
+    public function setSessionTimeout(string $sessionTimeout = ''): void
     {
         $this->sessionTimeout = $sessionTimeout;
     }
@@ -192,7 +194,7 @@ class ClientConfig
     /**
      * @param string $companyId
      */
-    public function setCompanyId(string $companyId)
+    public function setCompanyId(string $companyId = ''): void
     {
         $this->companyId = $companyId;
     }
@@ -211,7 +213,7 @@ class ClientConfig
     /**
      * @param string $entityId
      */
-    public function setEntityId(string $entityId)
+    public function setEntityId(string $entityId = ''): void
     {
         $this->entityId = $entityId;
     }
@@ -230,7 +232,7 @@ class ClientConfig
     /**
      * @param string $userId
      */
-    public function setUserId(string $userId)
+    public function setUserId(string $userId = ''): void
     {
         $this->userId = $userId;
     }
@@ -249,7 +251,7 @@ class ClientConfig
     /**
      * @param string $userPassword
      */
-    public function setUserPassword(string $userPassword)
+    public function setUserPassword(string $userPassword = ''): void
     {
         $this->userPassword = $userPassword;
     }
@@ -268,7 +270,7 @@ class ClientConfig
     /**
      * @param CredentialsInterface $credentials
      */
-    public function setCredentials(CredentialsInterface $credentials)
+    public function setCredentials(CredentialsInterface $credentials): void
     {
         $this->credentials = $credentials;
     }
@@ -287,7 +289,7 @@ class ClientConfig
     /**
      * @param LoggerInterface $logger
      */
-    public function setLogger(LoggerInterface $logger)
+    public function setLogger(LoggerInterface $logger): void
     {
         $this->logger = $logger;
     }
@@ -306,7 +308,7 @@ class ClientConfig
     /**
      * @param string $logLevel
      */
-    public function setLogLevel(string $logLevel)
+    public function setLogLevel(string $logLevel = ''): void
     {
         $this->logLevel = $logLevel;
     }
@@ -325,7 +327,7 @@ class ClientConfig
     /**
      * @param MessageFormatter $logMessageFormatter
      */
-    public function setLogMessageFormatter(MessageFormatter $logMessageFormatter)
+    public function setLogMessageFormatter(MessageFormatter $logMessageFormatter): void
     {
         $this->logMessageFormatter = $logMessageFormatter;
     }
@@ -344,7 +346,7 @@ class ClientConfig
     /**
      * @param MockHandler $mockHandler
      */
-    public function setMockHandler(MockHandler $mockHandler)
+    public function setMockHandler(MockHandler $mockHandler): void
     {
         $this->mockHandler = $mockHandler;
     }

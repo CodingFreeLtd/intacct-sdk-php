@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -29,7 +31,7 @@ class ApPaymentDetailCreditMemo implements IApPaymentDetail
         $this->info = $info;
     }
 
-    public function writeXml(XMLWriter &$xml): void
+    public function writeXml(?XMLWriter &$xml): void
     {
         $xml->startElement("APPYMTDETAIL");
 

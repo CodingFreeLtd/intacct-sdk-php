@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -107,7 +109,7 @@ class SenderCredentials
     /**
      * @param string $senderId
      */
-    public function setSenderId(string $senderId)
+    public function setSenderId(string $senderId = '')
     {
         $this->senderId = $senderId;
     }
@@ -123,7 +125,7 @@ class SenderCredentials
     /**
      * @param string $password
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password = '')
     {
         $this->password = $password;
     }

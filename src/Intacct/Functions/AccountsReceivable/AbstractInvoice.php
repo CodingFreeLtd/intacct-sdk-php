@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -549,7 +551,7 @@ abstract class AbstractInvoice extends AbstractFunction
     /**
      * @param string $taxSolutionId
      */
-    public function setTaxSolutionId(string $taxSolutionId)
+    public function setTaxSolutionId(string $taxSolutionId = '')
     {
         $this->taxSolutionId = $taxSolutionId;
     }

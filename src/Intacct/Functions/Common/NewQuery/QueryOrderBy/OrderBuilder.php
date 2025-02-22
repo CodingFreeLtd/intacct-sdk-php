@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -38,7 +40,7 @@ class OrderBuilder
      *
      * @return OrderBuilder
      */
-    public function ascending(string $fieldName): OrderBuilder
+    public function ascending(string $fieldName = ''): OrderBuilder
     {
         $this->validate($fieldName);
         $currentOrderField = new OrderAscending($fieldName);
@@ -52,7 +54,7 @@ class OrderBuilder
      *
      * @return OrderBuilder
      */
-    public function descending(string $fieldName): OrderBuilder
+    public function descending(string $fieldName = ''): OrderBuilder
     {
         $this->validate($fieldName);
         $currentOrderField = new OrderDescending($fieldName);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -34,7 +36,7 @@ class RequestConfig
     /**
      * @param string $controlId
      */
-    public function setControlId(string $controlId)
+    public function setControlId(string $controlId = ''): void
     {
         $this->controlId = $controlId;
     }
@@ -53,7 +55,7 @@ class RequestConfig
     /**
      * @param bool $transaction
      */
-    public function setTransaction(bool $transaction)
+    public function setTransaction(bool $transaction): void
     {
         $this->transaction = $transaction;
     }
@@ -72,7 +74,7 @@ class RequestConfig
     /**
      * @param bool $uniqueId
      */
-    public function setUniqueId(bool $uniqueId)
+    public function setUniqueId(bool $uniqueId): void
     {
         $this->uniqueId = $uniqueId;
     }
@@ -91,7 +93,7 @@ class RequestConfig
     /**
      * @param string $policyId
      */
-    public function setPolicyId(string $policyId)
+    public function setPolicyId(string $policyId = ''): void
     {
         $this->policyId = $policyId;
     }
@@ -110,10 +112,10 @@ class RequestConfig
     /**
      * @param string $encoding
      */
-    public function setEncoding(string $encoding)
+    public function setEncoding(string $encoding = ''): void
     {
         if (!in_array($encoding, mb_list_encodings())) {
-            throw new \InvalidArgumentException('Encoding "' . $encoding . '" is not supported by the system');
+            throw new \InvalidArgumentException(sprintf('Encoding "%s" is not supported by the system', $encoding));
         }
         $this->encoding = $encoding;
     }
@@ -132,7 +134,7 @@ class RequestConfig
     /**
      * @param int $maxRetries
      */
-    public function setMaxRetries(int $maxRetries)
+    public function setMaxRetries(int $maxRetries): void
     {
         if ($maxRetries < 0) {
             throw new \InvalidArgumentException(
@@ -160,7 +162,7 @@ class RequestConfig
      *
      * @param float $maxTimeout
      */
-    public function setMaxTimeout(float $maxTimeout)
+    public function setMaxTimeout(float $maxTimeout): void
     {
         if ($maxTimeout < 0) {
             throw new \InvalidArgumentException(
@@ -186,7 +188,7 @@ class RequestConfig
     /**
      * @param int[] $noRetryServerErrorCodes
      */
-    public function setNoRetryServerErrorCodes(array $noRetryServerErrorCodes)
+    public function setNoRetryServerErrorCodes(array $noRetryServerErrorCodes = []): void
     {
         foreach ($noRetryServerErrorCodes as $errorCode) {
             if (!is_int($errorCode)) {

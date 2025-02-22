@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -46,7 +48,7 @@ class ReadView extends AbstractFunction
     /**
      * @param string $viewName
      */
-    public function setViewName(string $viewName)
+    public function setViewName(string $viewName = '')
     {
         $this->viewName = $viewName;
     }
@@ -84,8 +86,11 @@ class ReadView extends AbstractFunction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
         

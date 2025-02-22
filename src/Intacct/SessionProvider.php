@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -28,9 +30,9 @@ class SessionProvider
      * @param ClientConfig $config
      * @return ClientConfig
      */
-    public static function factory(ClientConfig $config = null): ClientConfig
+    public static function factory(?ClientConfig $config = null): ClientConfig
     {
-        if (!$config) {
+        if (!$config instanceof ClientConfig) {
             $config = new ClientConfig();
         }
 

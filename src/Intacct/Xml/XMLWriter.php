@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -45,7 +47,7 @@ class XMLWriter extends \XMLWriter
      * @param string $name
      * @return bool
      */
-    protected function isValidXmlName(string $name)
+    protected function isValidXmlName(string $name = '')
     {
         try {
             new \DOMElement($name);

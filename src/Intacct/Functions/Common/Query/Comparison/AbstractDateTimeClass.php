@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -45,7 +47,7 @@ abstract class AbstractDateTimeClass extends AbstractComparison
      *
      * @param string $format
      */
-    public function __construct(string $format)
+    public function __construct(string $format = '')
     {
         $this->setFormat($format);
     }

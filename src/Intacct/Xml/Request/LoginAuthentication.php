@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -36,7 +38,7 @@ class LoginAuthentication implements AuthenticationInterface
     /**
      * @param string $userId
      */
-    public function setUserId(string $userId)
+    public function setUserId(string $userId = '')
     {
         if (!$userId) {
             throw new \InvalidArgumentException(
@@ -60,7 +62,7 @@ class LoginAuthentication implements AuthenticationInterface
     /**
      * @param string $companyId
      */
-    public function setCompanyId(string $companyId)
+    public function setCompanyId(string $companyId = '')
     {
         if (!$companyId) {
             throw new \InvalidArgumentException(
@@ -84,7 +86,7 @@ class LoginAuthentication implements AuthenticationInterface
     /**
      * @param string $entityId
      */
-    public function setEntityId(string $entityId)
+    public function setEntityId(string $entityId = '')
     {
         $this->entityId = $entityId;
     }
@@ -103,7 +105,7 @@ class LoginAuthentication implements AuthenticationInterface
     /**
      * @param string $password
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password = '')
     {
         if (!$password) {
             throw new \InvalidArgumentException(
@@ -121,7 +123,7 @@ class LoginAuthentication implements AuthenticationInterface
      * @param string $password
      * @param string|null $entityId
      */
-    public function __construct(string $userId, string $companyId, string $password, string $entityId = null)
+    public function __construct(string $userId, string $companyId, string $password, ?string $entityId = null)
     {
         $this->setUserId($userId);
         $this->setCompanyId($companyId);
@@ -134,10 +136,13 @@ class LoginAuthentication implements AuthenticationInterface
     /**
      * Write the operation block XML
      *
-     * @param XMLWriter $xml
+     * @param ?XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('authentication');
         $xml->startElement('login');
         $xml->writeElement('userid', $this->getUserId(), true);

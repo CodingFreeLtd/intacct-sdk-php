@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -40,7 +42,7 @@ class ReadMore extends AbstractFunction
     /**
      * @param string $resultId
      */
-    public function setResultId(string $resultId)
+    public function setResultId(string $resultId = '')
     {
         $this->resultId = $resultId;
     }
@@ -56,7 +58,7 @@ class ReadMore extends AbstractFunction
     /**
      * @param string $reportId
      */
-    public function setReportId(string $reportId)
+    public function setReportId(string $reportId = '')
     {
         $this->reportId = $reportId;
     }
@@ -66,8 +68,11 @@ class ReadMore extends AbstractFunction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
         

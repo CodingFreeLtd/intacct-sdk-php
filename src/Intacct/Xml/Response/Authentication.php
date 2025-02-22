@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -36,7 +38,7 @@ class Authentication
     /**
      * @param string $status
      */
-    private function setStatus(string $status)
+    private function setStatus(string $status = '')
     {
         $this->status = $status;
     }
@@ -55,7 +57,7 @@ class Authentication
     /**
      * @param string $userId
      */
-    private function setUserId(string $userId)
+    private function setUserId(string $userId = '')
     {
         $this->userId = $userId;
     }
@@ -74,7 +76,7 @@ class Authentication
     /**
      * @param string $companyId
      */
-    private function setCompanyId(string $companyId)
+    private function setCompanyId(string $companyId = '')
     {
         $this->companyId = $companyId;
     }
@@ -93,7 +95,7 @@ class Authentication
     /**
      * @param string $entityId
      */
-    private function setEntityId(string $entityId)
+    private function setEntityId(string $entityId = '')
     {
         $this->entityId = $entityId;
     }
@@ -131,7 +133,7 @@ class Authentication
     /**
      * @param string $sessionTimeout
      */
-    public function setSessionTimeout(string $sessionTimeout): void
+    public function setSessionTimeout(string $sessionTimeout = ''): void
     {
         $this->sessionTimeout = $sessionTimeout;
     }

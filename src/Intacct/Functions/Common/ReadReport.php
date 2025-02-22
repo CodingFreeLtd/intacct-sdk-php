@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -64,7 +66,7 @@ class ReadReport extends AbstractFunction
     /**
      * @param string $reportName
      */
-    public function setReportName(string $reportName)
+    public function setReportName(string $reportName = '')
     {
         $this->reportName = $reportName;
     }
@@ -152,7 +154,7 @@ class ReadReport extends AbstractFunction
     /**
      * @param string $listSeparator
      */
-    public function setListSeparator(string $listSeparator)
+    public function setListSeparator(string $listSeparator = '')
     {
         $this->listSeparator = $listSeparator;
     }
@@ -205,8 +207,11 @@ class ReadReport extends AbstractFunction
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
         

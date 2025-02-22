@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -49,13 +51,13 @@ interface QueryFunctionInterface
     /**
      * @param string $objectName
      */
-    public function setFrom(string $objectName);
+    public function setFrom(string $objectName = '');
 
     /**
      * @param string $objectName
      * @return QueryFunctionInterface
      */
-    public function from(string $objectName): QueryFunctionInterface;
+    public function from(string $objectName = ''): QueryFunctionInterface;
 
     /**
      * @param string $docParId
@@ -156,5 +158,5 @@ interface QueryFunctionInterface
     /**
      * @param XMLWriter $xml
      */
-    public function writeXML(XMLWriter &$xml);
+    public function writeXml(?XMLWriter &$xml);
 }

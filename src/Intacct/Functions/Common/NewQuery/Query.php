@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -99,7 +101,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      * @param string $objectName
      * @throws InvalidArgumentException
      */
-    public function setFrom(string $objectName)
+    public function setFrom(string $objectName = '')
     {
         if ($objectName !== '' && $objectName) {
             $this->fromObject = $objectName;
@@ -114,7 +116,7 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      * @param string $objectName
      * @return QueryFunctionInterface
      */
-    public function from(string $objectName): QueryFunctionInterface
+    public function from(string $objectName = ''): QueryFunctionInterface
     {
         $this->setFrom($objectName);
 
@@ -342,8 +344,11 @@ class Query extends AbstractFunction implements QueryFunctionInterface
      * @param XMLWriter $xml
      * @throws InvalidArgumentException
      */
-    public function writeXML(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->getControlId());
 

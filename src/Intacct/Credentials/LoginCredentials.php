@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -144,7 +146,7 @@ class LoginCredentials implements CredentialsInterface
     /**
      * @param string $companyId
      */
-    public function setCompanyId(string $companyId)
+    public function setCompanyId(string $companyId = '')
     {
         $this->companyId = $companyId;
     }
@@ -160,7 +162,7 @@ class LoginCredentials implements CredentialsInterface
     /**
      * @param string $entityId
      */
-    public function setEntityId(string $entityId)
+    public function setEntityId(string $entityId = '')
     {
         $this->entityId = $entityId;
     }
@@ -176,7 +178,7 @@ class LoginCredentials implements CredentialsInterface
     /**
      * @param string $userId
      */
-    public function setUserId(string $userId)
+    public function setUserId(string $userId = '')
     {
         $this->userId = $userId;
     }
@@ -192,7 +194,7 @@ class LoginCredentials implements CredentialsInterface
     /**
      * @param string $password
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password = '')
     {
         $this->password = $password;
     }

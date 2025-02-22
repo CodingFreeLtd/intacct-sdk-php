@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -46,7 +48,7 @@ class SortField
     /**
      * @param string $fieldName
      */
-    public function setFieldName(string $fieldName)
+    public function setFieldName(string $fieldName = '')
     {
         $this->fieldName = $fieldName;
     }
@@ -62,7 +64,7 @@ class SortField
     /**
      * @param string $orderBy
      */
-    public function setOrderBy(string $orderBy)
+    public function setOrderBy(string $orderBy = '')
     {
         $orderBys = [
             static::ORDER_BY_ASC,
@@ -80,8 +82,11 @@ class SortField
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('sortfield');
         $xml->writeAttribute('order', $this->getOrderBy());
 

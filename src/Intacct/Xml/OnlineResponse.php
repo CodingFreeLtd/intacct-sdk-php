@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -86,7 +88,7 @@ class OnlineResponse extends AbstractResponse
      *
      * @param string $body
      */
-    public function __construct(string $body)
+    public function __construct(string $body = '')
     {
         parent::__construct($body);
         if (!isset($this->getXml()->{'operation'})) {

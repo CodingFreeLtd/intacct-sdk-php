@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -45,7 +47,7 @@ abstract class AbstractSelectFunction implements SelectInterface
      *
      * @param string $field
      */
-    public function __construct(string $field)
+    public function __construct(string $field = '')
     {
         $this->field = $field;
     }
@@ -58,8 +60,11 @@ abstract class AbstractSelectFunction implements SelectInterface
     /**
      * @param XMLWriter &$xml
      */
-    public function writeXML(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->writeElement($this->getFunctionName(), $this->field, false);
     }
 }

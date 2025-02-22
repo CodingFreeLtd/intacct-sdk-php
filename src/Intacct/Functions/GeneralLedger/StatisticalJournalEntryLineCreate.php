@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -30,8 +32,11 @@ class StatisticalJournalEntryLineCreate extends AbstractStatisticalJournalEntryL
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('GLENTRY');
 
         $xml->writeElement('DOCUMENT', $this->getDocumentNumber());

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -25,8 +27,11 @@ use Intacct\Xml\XMLWriter;
 class BillLineTaxEntriesCreate extends AbstractBillLineTaxEntries
 {
 
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('taxentry');
 
         $xml->writeElement('detailid', $this->getTaxId());

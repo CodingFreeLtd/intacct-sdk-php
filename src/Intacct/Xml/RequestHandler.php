@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -87,7 +89,7 @@ class RequestHandler
     /**
      * @param string $endpointUrl
      */
-    public function setEndpointUrl(string $endpointUrl)
+    public function setEndpointUrl(string $endpointUrl = '')
     {
         $this->endpointUrl = $endpointUrl;
     }
@@ -122,7 +124,8 @@ class RequestHandler
         if ($clientConfig->getEndpointUrl()) {
             $this->setEndpointUrl($clientConfig->getEndpointUrl());
         } else {
-            $this->setEndpointUrl(new Endpoint($clientConfig));
+            $endpoint = new Endpoint($clientConfig);
+            $this->setEndpointUrl($endpoint->getUrl());
         }
 
         $this->setClientConfig($clientConfig);
@@ -275,14 +278,16 @@ class RequestHandler
             'handler' => $handler,
         ]);
 
-        $options = [
+        $cacert_path = storage_path(implode(DIRECTORY_SEPARATOR, ['certs', 'cacert.pem']));
+        $options     = [
             'body' => $xml->flush(),
             'headers' => [
                 'content-type' => 'application/xml',
                 'Accept-Encoding' => 'gzip,deflate',
                 'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
             ],
-            'timeout' => $this->requestConfig->getMaxTimeout()
+            'timeout' => $this->requestConfig->getMaxTimeout(),
+            'verify' => $cacert_path
         ];
         
         $response = $client->post($this->getEndpointUrl(), $options);

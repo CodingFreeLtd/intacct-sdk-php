@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -46,7 +48,7 @@ abstract class AbstractClient
     /**
      * @param ClientConfig $config
      */
-    public function setConfig(ClientConfig $config)
+    public function setConfig(ClientConfig $config):void
     {
         $this->config = $config;
     }
@@ -57,14 +59,17 @@ abstract class AbstractClient
      *
      * @param ClientConfig $config
      */
-    public function __construct(ClientConfig $config = null)
+    public function __construct(?ClientConfig $config = null)
     {
         if (!$config) {
             $config = new ClientConfig();
         }
 
         if (!$config->getProfileName()) {
-            $config->setProfileName(getenv(static::PROFILE_ENV_NAME));
+            $profile_name = getenv(static::PROFILE_ENV_NAME);
+            if(!empty($profile_name)){
+                $config->setProfileName($profile_name);
+            }
         }
 
         if ($config->getCredentials() instanceof SessionCredentials
@@ -86,7 +91,7 @@ abstract class AbstractClient
      *
      * @return Xml\OnlineResponse
      */
-    protected function executeOnlineRequest(array $functions, RequestConfig &$requestConfig = null)
+    protected function executeOnlineRequest(array $functions, ?RequestConfig &$requestConfig = null)
     {
         if (!$requestConfig) {
             $requestConfig = new RequestConfig();
@@ -103,7 +108,7 @@ abstract class AbstractClient
      *
      * @return Xml\OfflineResponse
      */
-    protected function executeOfflineRequest(array $functions, RequestConfig $requestConfig = null)
+    protected function executeOfflineRequest(array $functions, ?RequestConfig $requestConfig = null)
     {
         if (!$requestConfig) {
             $requestConfig = new RequestConfig();

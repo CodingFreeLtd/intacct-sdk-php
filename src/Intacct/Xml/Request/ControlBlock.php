@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -38,7 +40,7 @@ class ControlBlock
     /**
      * @param string $senderId
      */
-    public function setSenderId(string $senderId)
+    public function setSenderId(string $senderId = '')
     {
         if (!$senderId) {
             throw new \InvalidArgumentException(
@@ -62,7 +64,7 @@ class ControlBlock
     /**
      * @param string $password
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password = '')
     {
         if (!$password) {
             throw new \InvalidArgumentException(
@@ -86,7 +88,7 @@ class ControlBlock
     /**
      * @param string $controlId
      */
-    public function setControlId(string $controlId)
+    public function setControlId(string $controlId = '')
     {
         $length = strlen($controlId);
         if ($length < 1 || $length > 256) {
@@ -130,7 +132,7 @@ class ControlBlock
     /**
      * @param string $dtdVersion
      */
-    private function setDtdVersion(string $dtdVersion)
+    private function setDtdVersion(string $dtdVersion = '')
     {
         $this->dtdVersion = $dtdVersion;
     }
@@ -149,7 +151,7 @@ class ControlBlock
     /**
      * @param string $policyId
      */
-    public function setPolicyId(string $policyId)
+    public function setPolicyId(string $policyId = '')
     {
         $this->policyId = $policyId;
     }
@@ -195,8 +197,11 @@ class ControlBlock
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('control');
         $xml->writeElement('senderid', $this->getSenderId(), true);
         $xml->writeElement('password', $this->getPassword(), true);

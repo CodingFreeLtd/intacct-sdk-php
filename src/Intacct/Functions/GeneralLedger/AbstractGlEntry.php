@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -313,5 +315,5 @@ abstract class AbstractGlEntry
         $this->customAllocationSplits = $customAllocationSplits;
     }
 
-    abstract public function writeXml(XMLWriter &$xml);
+    abstract public function writeXml(?XMLWriter &$xml);
 }

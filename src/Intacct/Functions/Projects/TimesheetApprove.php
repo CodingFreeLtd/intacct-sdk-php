@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -75,7 +77,7 @@ class TimesheetApprove extends AbstractFunction {
     /**
      * @param string $approvedBy
      */
-    public function setApprovedBy(string $approvedBy): void
+    public function setApprovedBy(string $approvedBy = ''): void
     {
         $this->approvedBy = $approvedBy;
     }
@@ -94,7 +96,7 @@ class TimesheetApprove extends AbstractFunction {
     /**
      * @param string $comment
      */
-    public function setComment(string $comment): void
+    public function setComment(string $comment = ''): void
     {
         $this->comment = $comment;
     }
@@ -115,8 +117,11 @@ class TimesheetApprove extends AbstractFunction {
         return $fields;
     }
 
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->controlId, true);
         $xml->startElement('approve');

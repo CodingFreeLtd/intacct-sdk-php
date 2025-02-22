@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -44,7 +46,7 @@ class ErrorMessage
      *
      * @param \SimpleXMLElement|null $errorMessage
      */
-    public function __construct(\SimpleXMLElement $errorMessage = null)
+    public function __construct(?\SimpleXMLElement $errorMessage = null)
     {
         $errors = [];
         foreach ($errorMessage->{'error'} as $error) {

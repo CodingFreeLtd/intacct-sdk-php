@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -387,5 +389,5 @@ abstract class AbstractTimesheetEntry extends AbstractFunction
         $this->warehouseId = $warehouseId;
     }
 
-    abstract public function writeXml(XMLWriter &$xml);
+    abstract public function writeXml(?XMLWriter &$xml);
 }

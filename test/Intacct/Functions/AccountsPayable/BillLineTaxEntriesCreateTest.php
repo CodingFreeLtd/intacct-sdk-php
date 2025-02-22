@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Functions\AbstractFunction;

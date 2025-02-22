@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -66,7 +68,7 @@ class SessionCredentials implements CredentialsInterface
     /**
      * @param string $sessionId
      */
-    public function setSessionId(string $sessionId)
+    public function setSessionId(string $sessionId = '')
     {
         $this->sessionId = $sessionId;
     }

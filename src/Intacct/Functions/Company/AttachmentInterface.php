@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -30,5 +32,5 @@ interface AttachmentInterface
 
     public function setFileName($fileName);
 
-    public function writeXml(XMLWriter &$xml);
+    public function writeXml(?XMLWriter &$xml);
 }

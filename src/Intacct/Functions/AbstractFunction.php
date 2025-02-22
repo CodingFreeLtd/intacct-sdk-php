@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -68,5 +70,5 @@ abstract class AbstractFunction implements FunctionInterface
         $this->setControlId($controlId);
     }
 
-    abstract public function writeXml(XMLWriter &$xml);
+    abstract public function writeXml(?XMLWriter &$xml);
 }

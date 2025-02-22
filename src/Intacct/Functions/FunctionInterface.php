@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -24,12 +26,12 @@ interface FunctionInterface
     
     public function getControlId(): string;
     
-    public function setControlId(string $controlId);
+    public function setControlId(string $controlId = '');
 
     /**
      * Write the XML
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml);
+    public function writeXml(?XMLWriter &$xml);
 }

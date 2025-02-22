@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -44,7 +46,7 @@ class SelectBuilder
      *
      * @return SelectBuilder
      */
-    public function field(string $fieldName): SelectBuilder
+    public function field(string $fieldName = ''): SelectBuilder
     {
         $_currentSelectField = new Field($fieldName);
         $this->_selects[] = $_currentSelectField;
@@ -72,7 +74,7 @@ class SelectBuilder
      *
      * @return SelectBuilder
      */
-    public function avg(string $fieldName): SelectBuilder
+    public function avg(string $fieldName = ''): SelectBuilder
     {
         $_currentSelectField = $this->_factory->create(AbstractSelectFunction::AVERAGE, $fieldName);
         $this->_selects[] = $_currentSelectField;
@@ -85,7 +87,7 @@ class SelectBuilder
      *
      * @return SelectBuilder
      */
-    public function min(string $fieldName): SelectBuilder
+    public function min(string $fieldName = ''): SelectBuilder
     {
         $_currentSelectField = $this->_factory->create(AbstractSelectFunction::MINIMUM, $fieldName);
         $this->_selects[] = $_currentSelectField;
@@ -98,7 +100,7 @@ class SelectBuilder
      *
      * @return SelectBuilder
      */
-    public function max(string $fieldName): SelectBuilder
+    public function max(string $fieldName = ''): SelectBuilder
     {
         $_currentSelectField = $this->_factory->create(AbstractSelectFunction::MAXIMUM, $fieldName);
         $this->_selects[] = $_currentSelectField;
@@ -111,7 +113,7 @@ class SelectBuilder
      *
      * @return SelectBuilder
      */
-    public function count(string $fieldName): SelectBuilder
+    public function count(string $fieldName = ''): SelectBuilder
     {
         $_currentSelectField = $this->_factory->create(AbstractSelectFunction::COUNT, $fieldName);
         $this->_selects[] = $_currentSelectField;
@@ -124,7 +126,7 @@ class SelectBuilder
      *
      * @return SelectBuilder
      */
-    public function sum(string $fieldName): SelectBuilder
+    public function sum(string $fieldName = ''): SelectBuilder
     {
         $_currentSelectField = $this->_factory->create(AbstractSelectFunction::SUM, $fieldName);
         $this->_selects[] = $_currentSelectField;

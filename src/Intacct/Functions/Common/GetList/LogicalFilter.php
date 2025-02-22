@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -67,7 +69,7 @@ class LogicalFilter implements FilterInterface
     /**
      * @param string $operator
      */
-    public function setOperator(string $operator)
+    public function setOperator(string $operator = '')
     {
         $operators = [
             static::OPERATOR_AND,
@@ -90,7 +92,7 @@ class LogicalFilter implements FilterInterface
     /**
      * @param string $objectName
      */
-    public function setObjectName(string $objectName)
+    public function setObjectName(string $objectName = '')
     {
         $this->objectName = $objectName;
     }
@@ -100,8 +102,11 @@ class LogicalFilter implements FilterInterface
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('logical');
         $xml->writeAttribute('logical_operator', $this->getOperator());
         if ($this->getObjectName()) {

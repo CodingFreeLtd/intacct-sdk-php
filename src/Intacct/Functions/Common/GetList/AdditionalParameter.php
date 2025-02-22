@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -39,7 +41,7 @@ class AdditionalParameter
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name = '')
     {
         $this->name = $name;
     }
@@ -55,7 +57,7 @@ class AdditionalParameter
     /**
      * @param string $value
      */
-    public function setValue(string $value)
+    public function setValue(string $value = '')
     {
         $this->value = $value;
     }
@@ -65,8 +67,11 @@ class AdditionalParameter
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('parameter');
         $xml->writeElement('name', $this->getName(), true);
         $xml->writeElement('value', $this->getValue(), true);

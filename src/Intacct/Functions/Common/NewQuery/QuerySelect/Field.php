@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -37,7 +39,7 @@ class Field implements SelectInterface
      * @param string $fieldName
      * @throws InvalidArgumentException
      */
-    public function __construct(string $fieldName)
+    public function __construct(string $fieldName = '')
     {
         if (!$fieldName) {
             throw new InvalidArgumentException(
@@ -51,8 +53,11 @@ class Field implements SelectInterface
     /**
      * @param XMLWriter &$xml
      */
-    public function writeXML(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->writeElement(self::FIELD, $this->fieldName, false);
     }
 }

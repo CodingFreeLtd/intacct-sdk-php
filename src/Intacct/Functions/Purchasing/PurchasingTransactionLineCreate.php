@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -28,8 +30,11 @@ class PurchasingTransactionLineCreate extends AbstractPurchasingTransactionLine
     /**
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('potransitem');
 
         $xml->writeElement('itemid', $this->getItemId(), true);

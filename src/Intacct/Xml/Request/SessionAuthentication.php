@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -36,7 +38,7 @@ class SessionAuthentication implements AuthenticationInterface
     /**
      * @param string $sessionId
      */
-    public function setSessionId(string $sessionId)
+    public function setSessionId(string $sessionId = '')
     {
         if (!$sessionId) {
             throw new \InvalidArgumentException(
@@ -51,7 +53,7 @@ class SessionAuthentication implements AuthenticationInterface
      *
      * @param string $sessionId
      */
-    public function __construct(string $sessionId)
+    public function __construct(string $sessionId = '')
     {
         $this->setSessionId($sessionId);
     }
@@ -61,8 +63,11 @@ class SessionAuthentication implements AuthenticationInterface
      *
      * @param XMLWriter $xml
      */
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('authentication');
         $xml->writeElement('sessionid', $this->getSessionId(), true);
         $xml->endElement(); //authentication

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -36,13 +38,16 @@ class Lookup extends AbstractFunction
     /**
      * @param string $objectname
      */
-    public function setObjectname(string $objectname): void
+    public function setObjectname(string $objectname = ''): void
     {
         $this->objectname = $objectname;
     }
 
-    public function writeXml(XMLWriter &$xml)
+    public function writeXml(?XMLWriter &$xml)
     {
+        if(!$xml instanceof XMLWriter){
+            $xml = new XMLWriter();
+        }
         $xml->startElement('function');
         $xml->writeAttribute('controlid', $this->controlId, true);
         $xml->startElement('lookup');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Copyright 2021 Sage Intacct, Inc.
  *
@@ -40,7 +42,7 @@ class RequestBlock
     /**
      * @param string $encoding
      */
-    public function setEncoding(string $encoding)
+    public function setEncoding(string $encoding = '')
     {
         $this->encoding = $encoding;
     }
